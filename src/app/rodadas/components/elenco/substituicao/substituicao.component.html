@@ -1,0 +1,36 @@
+<div class="jogadorEscaladoSubstituido mt-2" *ngFor="let substituicao of detalhesJogo?.substituicoes">
+
+  <div class="infoJogadorSubstituido">
+
+    <div class="jogadorSaiu">
+      <span class="numero">{{substituicao.jogadorSaiu.jogadorElenco.numero}}</span>
+      <span class="nome">{{substituicao.jogadorSaiu.jogadorElenco.jogador.nome | titlecase}}</span>
+    </div>
+
+    <div class="jogadorEntrou">
+
+      <div class="infoJogadorEntrou">
+        <span class="numero">{{substituicao.jogadorEntrou.jogadorElenco.numero}}</span>
+        <span class="nome">{{substituicao.jogadorEntrou.jogadorElenco.jogador.nome | titlecase}}</span>
+
+        <span class="cartao-amarelo" *ngIf="substituicao.jogadorEntrou.cartoesAmarelos > 0"></span>
+        <span class="cartao-vermelho" *ngIf="substituicao.jogadorEntrou.cartoesVermelhos > 0"></span>
+        <span class="gols" *ngIf="substituicao.jogadorEntrou.gols > 0" ngFor="let gol of escalacao.gols">
+          <i *ngFor="let gol of createRange(substituicao.jogadorEntrou.gols)">
+            <img src="assets/gol-pro.png" height="12" width="12" />
+          </i>
+        </span>
+        <span class="gols" *ngIf="substituicao.jogadorEntrou.golsContra > 0">
+          <i *ngFor="let gol of createRange(substituicao.jogadorEntrou.golsContra)">
+            <img src="assets/gol-contra.png" height="12" width="12" />
+          </i>
+        </span>
+      </div>
+
+      <div class="removerJogadorSubstituido">
+        <i class="pi pi-times" (click)="removerJogadorEscaladoSubstituido(substituicao)"></i>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,23 @@
+/* :host ::ng-deep .p-multiselect .p-component .p-multiselect-chip {
+  width: 30rem;
+} */
+
+/* :host ::ng-deep .p-element .p-multiselect-label-container {
+  background-color: pink !important;
+  width: 40rem !important;
+} */
+
+:host ::ng-deep .p-multiselect {
+  max-width: 106rem;
+  min-width: 27rem;
+}
+
+#item-selecionado {
+  display: flex;
+  gap: 0.6rem;
+}
+
+#lista-extendida {
+  display: flex;
+  gap: 0.6rem;
+}

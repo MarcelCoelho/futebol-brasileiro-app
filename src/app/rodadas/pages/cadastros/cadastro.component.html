@@ -1,0 +1,31 @@
+<div class="card">
+
+  <div class="flex flex-column md:flex-row card-container indigo-container">
+
+    <div class="flex flex-column align-items-center justify-content-start border-round m-2 p-2">
+
+      <app-jogos-por-rodada (onJogoSelecionado)="jogoSelecionado($event)"></app-jogos-por-rodada>
+
+    </div>
+
+    <div class="flex flex-column align-items-between justify-content-start border-round w-full m-2 p-2"
+      *ngIf="jogo !== null && jogo !== undefined">
+
+      <!-- INFO JOGO + GRAVAR -->
+      <div>
+        <app-info-jogo [jogo]="jogo" (onGravarDetalhesJogo)="gravarDetalhesJogo($event)"></app-info-jogo>
+      </div>
+
+      <div class="flex align-items-start justify-content-between m-2">
+
+        <app-elenco [jogo]="jogo" [mandante]="true"></app-elenco>
+
+        <app-elenco [jogo]="jogo" [mandante]="false"></app-elenco>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

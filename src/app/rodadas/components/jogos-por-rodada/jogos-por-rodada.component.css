@@ -1,0 +1,47 @@
+.rodadas {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 18rem;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+:host ::ng-deep .p-accordion .p-accordion-header-link {
+  text-decoration: none;
+  z-index: 0;
+}
+
+.confronto-clubes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  padding: 0.5rem;
+  margin-bottom: 0.2rem;
+  border-radius: 0.2rem;
+  background-color: aliceblue;
+}
+
+.confronto-clubes:hover {
+  cursor: pointer;
+  background-color: rgb(144, 144, 230);
+}
+
+.destacado {
+  background-color: rgb(118, 118, 172) !important;
+}
+
+.apelido-clube {
+  width: 2rem;
+}
+
+.confronto-clubes span {
+  font-size: 0.9rem;
+}
+
+.confronto-clubes img {
+  width: 1.5rem;
+  height: 1.5rem;
+}

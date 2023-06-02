@@ -1,0 +1,62 @@
+.jogadorEscaladoSubstituido {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  width: 18.5rem;
+  border: none;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  cursor: move;
+}
+
+.infoJogadorSubstituido {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* margin-bottom: 1rem; */
+  gap: 0.3rem;
+}
+
+.infoJogadorSubstituido:hover {
+  filter: brightness(0.8);
+  background-color: rgb(144, 144, 230);
+  border-radius: 0.5rem;
+}
+
+.jogadorSaiu {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.jogadorEntrou {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 18.5rem;
+}
+
+.infoJogadorEntrou {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.removerJogador {
+  display: flex;
+  /* gap: 0.7rem; */
+  cursor: pointer;
+}
+
+.removerJogadorSubstituido {
+  display: flex;
+  cursor: pointer;
+  margin-right: 1rem;
+}

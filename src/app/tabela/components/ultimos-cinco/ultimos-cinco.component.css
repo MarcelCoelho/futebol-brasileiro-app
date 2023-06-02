@@ -1,0 +1,31 @@
+.ultimas-rodadas {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+
+.resultado {
+  vertical-align: middle;
+  /* float: left; */
+  width: 0.4rem;
+  height: 0.4rem;
+  /* margin: 20px; */
+  shape-outside: circle();
+  clip-path: circle();
+  background: transparent;
+}
+
+.vitoria {
+  background-color: #51a81e;
+}
+
+.empate {
+  background-color: #ccc;
+}
+
+.derrota {
+  background-color: #f00;
+}

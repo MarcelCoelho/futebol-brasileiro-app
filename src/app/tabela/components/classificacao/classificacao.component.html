@@ -1,0 +1,52 @@
+<table class="tabela-brasileirao">
+  <tr>
+    <!-- <th class="tabela-colunas-bordas"></th> -->
+    <th colspan="3" class="titulo-clube">Classificação</th>
+    <th>P</th>
+    <th>J</th>
+    <th>V</th>
+    <th>E</th>
+    <th>D</th>
+    <th>GP</th>
+    <th>GC</th>
+    <th>SG</th>
+    <th>
+      <div class="cartao-vermelho"></div>
+    </th>
+    <th>
+      <div class="cartao-amarelo"></div>
+    </th>
+    <th>%</th>
+    <th>Recentes</th>
+    <th>Próx</th>
+    <th class="tabela-colunas-bordas"></th>
+  </tr>
+  <tr *ngFor="let equipe of classificacao" class="linhas">
+    <!-- <td [class]="equipe.cssClasse"></td> -->
+    <td [class]="equipe.cssClasse">{{equipe.posicao}}</td>
+    <td><img src="assets/clubes/{{equipe.clube.logo}}.png" alt="{{equipe.clube.nome}}"></td>
+    <td class="titulo-clube">{{equipe.clube.nome}}</td>
+    <td class="pontos-clube">{{equipe.pontos}}</td>
+    <td>{{equipe.jogos}}</td>
+    <td>{{equipe.vitorias}}</td>
+    <td>{{equipe.empates}}</td>
+    <td>{{equipe.derrotas}}</td>
+    <td>{{equipe.golsPro}}</td>
+    <td>{{equipe.golsContra}}</td>
+    <td>{{equipe.saldoGols}}</td>
+    <td>{{equipe.cartoesVermelhos}}</td>
+    <td>{{equipe.cartoesAmarelos}}</td>
+    <td>{{equipe.aproveitamento | number }}</td>
+    <td class="titulo-ultimas-cinco">
+      <app-ultimos-cinco [clube]="equipe.clube" [rodadas]="rodadas"></app-ultimos-cinco>
+      <!-- <img src="img/vitoria.svg" alt="vitória">
+      <img src="img/vitoria.svg" alt="vitória">
+      <img src="img/vitoria.svg" alt="vitória">
+      <img src="img/empate.svg" alt="empate">
+      <img src="img/vitoria.svg" alt="vitória"> -->
+    </td>
+    <td>
+      <img src="assets/clubes/{{equipe.proximoJogo?.logo}}.png" alt="{{equipe.proximoJogo?.nome}}">
+    </td>
+  </tr>
+</table>

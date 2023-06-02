@@ -1,0 +1,33 @@
+<input type="text" pInputText [(ngModel)]="filtroRodadas" (ngModelChange)="filtrarRodadas()"
+  placeholder="buscar por: rodada | confronto" class="w-18rem m-1" />
+
+<div class="rodadas" cdkDropList (cdkDropListDropped)="dropOrderRodadas($event)">
+  <div *ngFor="let rodadaCustom of rodadasCustom" cdkDrag>
+
+    <p-accordion (onOpen)="getSelected(rodadaCustom)">
+      <p-accordionTab multiple="true" [transitionOptions]="'500ms'" [selected]="rodadaCustom.open">
+        <ng-template pTemplate="header">
+          <span>RODADA {{ rodadaCustom.rodada.numero }}</span>
+        </ng-template>
+        <ng-template pTemplate="content">
+
+          <div id="content-header" *ngFor="let jogo of rodadaCustom.rodada.jogos">
+
+            <div [class]="getClasseConfrontoClube(jogo)" (click)="jogoSelecionado(jogo)">
+              <span class="apelido-clube">{{jogo.clubeMandante.apelido}}</span>
+              <img src="assets/clubes/{{jogo.clubeMandante.logo}}.png" alt="{{jogo.clubeMandante.nome}}">
+              <span><b>{{jogo.golsClubeMandante}}</b></span>
+              <span>X</span>
+              <span><b>{{jogo.golsClubeVisitante}}</b></span>
+              <img src="assets/clubes/{{jogo.clubeVisitante.logo}}.png" alt="{{jogo.clubeVisitante.nome}}">
+              <span class="apelido-clube">{{jogo.clubeVisitante.apelido}}</span>
+            </div>
+
+          </div>
+
+        </ng-template>
+      </p-accordionTab>
+    </p-accordion>
+
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.nome {
+  width: 8rem;
+  font-size: 0.8rem;
+  text-align: left !important;
+}
+
+.escalado {
+  text-decoration: line-through;
+}
+
+.cartao-amarelo {
+  height: 16px;
+  width: 10px;
+  background-color: var(--cartao-amarelo);
+}
+
+.cartao-vermelho {
+  height: 16px;
+  width: 10px;
+  background-color: var(--cartao-vermelho);
+}
+
+.jogador :hover {
+  background: rgb(144, 144, 230) !important;
+  border-radius: 0.5rem;
+}

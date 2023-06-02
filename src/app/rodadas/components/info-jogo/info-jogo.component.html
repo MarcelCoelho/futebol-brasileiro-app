@@ -1,0 +1,19 @@
+<div class="flex align-items-center justify-content-between bg-blue-50 p-2 ">
+  <div>
+    <span>Data: </span>
+    <p-calendar [(ngModel)]="jogo.data" dateFormat="dd/mm/yy" [showTime]="true"></p-calendar>
+  </div>
+
+  <div>
+    <span>Local: </span>
+    <p-dropdown [options]="estadios | sortEstadio" [(ngModel)]="estadioSelecionado" placeholder="Selecione o local"
+      optionLabel="apelido"></p-dropdown>
+  </div>
+
+  <div class="flex align-items-center gap-2">
+    <p-checkbox [(ngModel)]="jogo.finalizado" inputId="binary" [binary]="true"></p-checkbox>
+    <label class="mt-2">Jogo Finalizado</label>
+  </div>
+
+  <p-button label="Gravar Detalhes Jogo" (onClick)="gravarDetalhesJogo()"></p-button>
+</div>
