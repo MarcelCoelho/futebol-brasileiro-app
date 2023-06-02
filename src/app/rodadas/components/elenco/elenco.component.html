@@ -1,0 +1,131 @@
+<!-- MANDANTE -->
+<div [class]="getClasseMainElenco()" *ngIf="jogo !== null">
+
+  <!-- LOGO + PLACAR -->
+  <div class="flex align-items-center justify-content-start">
+
+    <div *ngIf="mandante; then _mandante else visitante"></div>
+
+    <ng-template #_mandante>
+      <!-- LOGO -->
+      <img src=" assets/clubes/{{jogo.clubeMandante.logo}}.png" alt="{{jogo.clubeMandante.nome}}" height="54"
+        width="54">
+
+      <!-- PLACAR -->
+      <input class="w-4rem h-2rem bg-transparent border-none border-botton-1 text-4xl text-center font-bold" pInputText
+        [(ngModel)]="jogo.golsClubeMandante" />
+
+    </ng-template>
+
+    <ng-template #visitante>
+
+      <!-- PLACAR -->
+      <input class="w-4rem h-2rem bg-transparent border-none border-botton-1 text-4xl text-center font-bold" pInputText
+        [(ngModel)]="jogo.golsClubeVisitante" />
+
+      <!-- LOGO -->
+      <img src=" assets/clubes/{{jogo.clubeVisitante.logo}}.png" alt="{{jogo.clubeVisitante.nome}}" height="54"
+        width="54">
+
+    </ng-template>
+
+  </div>
+
+  <!-- FILTRO JOGADORES -->
+  <div class="flex h-2rem text-sm">
+    <input type="text" pInputText [(ngModel)]="filtroJogadores" placeholder="Nº jogadores ';'" />
+    <button pButton label="Escalar" class="flex align-items-centerjustify-content-end h-2rem text-sm -ml-5"
+      (click)="escalarJogadores()"></button>
+  </div>
+
+  <div class="flex gap-5">
+
+    <div *ngIf="mandante; then elencoMandante else elencoVisitante"></div>
+
+    <ng-template #elencoMandante>
+
+      <!-- ELENCO -->
+      <div class="jogador">
+        <div *ngFor="let elenco of equipe.elenco" pDraggable (onDragStart)="dragStart(elenco)" (onDragEnd)="dragEnd()">
+
+          <div
+            class="flex justify-content-start align-items-center border-bottom-1 gap-2 mb-1 p-2 border-round-md cursor-pointer">
+
+            <span class="w-2rem">{{elenco.numero}}</span>
+            <span [class]="getClasseNomeJogador(elenco)">{{elenco.jogador.nome | titlecase}}</span>
+            <i class="pi pi-plus" (click)="addJogadorEscalado(elenco)"></i>
+
+            <div class="cartao-amarelo" (click)="addCartaoAmarelo(elenco)"></div>
+            <div class="cartao-vermelho" (click)="addCartaoVermelho(elenco)"></div>
+            <img src="assets/gol-contra.png" (click)="addGolsContra(elenco)" height="12" width="12" />
+            <img src="assets/gol-pro.png" (click)="addGolsPro(elenco)" height="12" width="12" />
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ESCALACAO -->
+      <div class="flex p-2 mt-7">
+
+        <div pDroppable (onDrop)="drop()">
+
+          <div class="escalacao" cdkDropList (cdkDropListDropped)="dropOrder($event)">
+
+            <app-escalacao [detalhesJogo]="jogo.detalhesJogo?.mandante"
+              (onSubstituicoes)="substituicoes($event)"></app-escalacao>
+            <div class=" flex align-items-center justify-content-center mt-5">
+              <span>Substituições</span>
+            </div>
+            <app-substituicao [detalhesJogo]="jogo.detalhesJogo?.mandante"></app-substituicao>
+
+          </div>
+        </div>
+
+      </div>
+
+    </ng-template>
+
+    <ng-template #elencoVisitante>
+
+      <!-- ESCALACAO -->
+      <div class="flex p-2 mt-7">
+
+        <div pDroppable (onDrop)="drop()">
+
+          <div class="escalacao" cdkDropList (cdkDropListDropped)="dropOrder($event)">
+
+            <app-escalacao [detalhesJogo]="jogo.detalhesJogo?.visitante"></app-escalacao>
+            <div class=" flex align-items-center justify-content-center mt-5"><span>Substituições</span></div>
+            <app-substituicao [detalhesJogo]="jogo.detalhesJogo?.visitante"></app-substituicao>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ELENCO -->
+      <div class="jogador">
+        <div *ngFor="let elenco of equipe.elenco" pDraggable (onDragStart)="dragStart(elenco)" (onDragEnd)="dragEnd()">
+
+          <div
+            class="flex justify-content-start align-items-center border-bottom-1 gap-2 mb-1 p-2 border-round-md cursor-pointer">
+
+            <span class="w-2rem">{{elenco.numero}}</span>
+            <span [class]="getClasseNomeJogador(elenco)">{{elenco.jogador.nome | titlecase}}</span>
+            <i class="pi pi-plus" (click)="addJogadorEscalado(elenco)"></i>
+
+            <div class="cartao-amarelo" (click)="addCartaoAmarelo(elenco)"></div>
+            <div class="cartao-vermelho" (click)="addCartaoVermelho(elenco)"></div>
+            <img src="assets/gol-contra.png" (click)="addGolsContra(elenco)" height="12" width="12" />
+            <img src="assets/gol-pro.png" (click)="addGolsPro(elenco)" height="12" width="12" />
+
+          </div>
+
+        </div>
+      </div>
+
+    </ng-template>
+
+  </div>
+</div>

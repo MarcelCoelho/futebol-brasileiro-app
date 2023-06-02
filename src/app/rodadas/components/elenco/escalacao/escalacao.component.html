@@ -1,0 +1,24 @@
+<div [class]="getClasseJogadorEscalado(escalacao)" *ngFor="let escalacao of detalhesJogo?.escalacao" cdkDrag>
+
+  <div class="infoJogador">
+    <span class="w-2rem">{{escalacao.jogadorElenco.numero}}</span>
+    <span>{{escalacao.jogadorElenco.jogador.nome | titlecase}}</span>
+
+    <span class="cartao-amarelo" *ngIf="escalacao.cartoesAmarelos > 0"></span>
+    <span class="cartao-vermelho" *ngIf="escalacao.cartoesVermelhos > 0"></span>
+    <span *ngIf="escalacao.gols > 0" ngFor="let gol of escalacao.gols">
+      <i *ngFor="let gol of createRange(escalacao.gols)">
+        <img src="assets/gol-pro.png" height="12" width="12" />
+      </i>
+    </span>
+    <span *ngIf="escalacao.golsContra > 0">
+      <i *ngFor="let gol of createRange(escalacao.golsContra)">
+        <img src="assets/gol-contra.png" height="12" width="12" />
+      </i>
+    </span>
+  </div>
+  <div class="flex gap-1">
+    <i class="pi pi-arrow-right-arrow-left" (click)="substituirJogadorEscalado(escalacao)"></i>
+    <i class="pi pi-times" (click)="removerJogadorEscalado(escalacao)"></i>
+  </div>
+</div>

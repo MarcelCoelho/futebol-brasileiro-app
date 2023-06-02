@@ -1,0 +1,68 @@
+<div class="flex flex-column justify-content-center border-1 border-solid border-gray-300">
+
+  <div class="flex align-items-center justify-content-between h-4rem border-1 border-solid border-gray-200 shadow-1">
+
+    <div *ngIf="rodada.numero > 1">
+      <i class="pi pi-angle-left" (click)="rodadaAnterior(rodada.numero)"></i>
+    </div>
+    <div *ngIf="rodada.numero === 1">
+      <i class="pi pi-angle-left" (click)="rodadaAnterior(rodada.numero)"></i>
+    </div>
+
+    <span><b>RODADA {{rodada.numero}}</b></span>
+
+    <div *ngIf="rodada.numero < 20">
+      <i class="pi pi-angle-right" (click)="proximaRodada(rodada.numero)"></i>
+    </div>
+    <div *ngIf="rodada.numero === 20">
+      <i class="pi pi-angle-right" (click)="proximaRodada(rodada.numero)"></i>
+    </div>
+
+  </div>
+
+  <div class="content" *ngFor="let jogo of rodada.jogos">
+
+    <div class="flex flex-column w-full">
+
+      <div class="flex align-items-center justify-content-center gap-1 p-2">
+
+        <span class="flex"> {{ getDiaSemanaLocal(jogo.data) |uppercase}} {{ jogo.data | date: 'dd/MM/yyyy'
+          }}</span>
+
+        <span class="flex">{{jogo.hora}}</span>
+
+      </div>
+
+      <div class="flex align-items-center justify-content-around m-1">
+
+        <span>{{jogo.clubeMandante.apelido}}</span>
+
+        <img src="assets/clubes/{{jogo.clubeMandante.logo}}.png" alt="{{jogo.clubeMandante.nome}}" height="32"
+          width="32">
+
+        <span class="text-2xl"
+          *ngIf="jogo.finalizado || getJogoEmAndamentoLocal(jogo)"><b>{{jogo.golsClubeMandante}}</b></span>
+
+        <span>X</span>
+
+        <span class="text-2xl"
+          *ngIf="jogo.finalizado || getJogoEmAndamentoLocal(jogo)"><b>{{jogo.golsClubeVisitante}}</b></span>
+
+        <img src="assets/clubes/{{jogo.clubeVisitante.logo}}.png" alt="{{jogo.clubeVisitante.nome}}" height="32"
+          width="32">
+
+        <span>{{jogo.clubeVisitante.apelido}}</span>
+
+      </div>
+
+      <div class="flex align-items-center justify-content-center">
+        <span>{{jogo.local?.apelido | uppercase }}</span>
+      </div>
+
+      <div class="flex align-items-center justify-content-center">
+        <span>{{jogo.finalizado ? 'Encerrado' : getJogoEmAndamentoLocal(jogo) ? 'Em Andamento' : ''}}</span>
+      </div>
+    </div>
+  </div>
+
+</div>

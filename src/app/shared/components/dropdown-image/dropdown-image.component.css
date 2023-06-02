@@ -1,0 +1,21 @@
+#container {
+  z-index: -1;
+}
+
+#item-selecionado {
+  display: flex;
+  gap: 0.6rem;
+}
+
+#lista-extendida {
+  display: flex;
+  gap: 0.6rem;
+}
+
+:host ::ng-deep .p-multiselect {
+  width: 20rem;
+}
+
+:host ::ng-deep .p-multiselect-trigger {
+  background: red;
+}

@@ -1,0 +1,22 @@
+<div id="container">
+  <p-multiSelect [options]="data" [(ngModel)]="selectedData" optionLabel="descricao" optionValue="codigo"
+    (onChange)="clubeSelecionado();" [maxSelectedLabels]="3" scrollHeight="19rem" display="chip"
+    placeholder="Selecione o(s) clube(s)">
+
+    <ng-template let-value pTemplate="selectedItems">
+      <div id="item-selecionado" *ngFor="let clube of dataSelected">
+        <img src="assets/clubes/{{clube.imagem}}.png" style="width: 26px" />
+        <!-- <div>{{ clube.descricao }}</div> -->
+      </div>
+      <div *ngIf="!dataSelected || dataSelected.length === 0">Selecione o(s) clube(s)</div>
+    </ng-template>
+
+    <ng-template let-clube pTemplate="item">
+      <div id="lista-extendida">
+        <img src="assets/clubes/{{clube.imagem}}.png" style="width: 26px" />
+        <div>{{ clube.descricao }}</div>
+      </div>
+    </ng-template>
+
+  </p-multiSelect>
+</div>

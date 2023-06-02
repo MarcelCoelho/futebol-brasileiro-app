@@ -1,0 +1,88 @@
+/* tr:nth-child(even) {
+  background: rgb(238, 235, 235);
+} */
+
+.tabela-brasileirao {
+  /* margin-top: 8rem; */
+  border: 1px solid #e9eaeb;
+  border-top: none;
+  /* width: 40vw; */
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.tabela-brasileirao th {
+  border-top: 1px solid #e0e0e0;
+  font-weight: 300;
+  color: #70758d;
+  font-size: 1rem;
+  padding: 1.2rem;
+}
+
+.tabela-brasileirao td {
+  border-top: 1px solid #e0e0e0;
+  font-weight: 200;
+  color: #000000;
+  padding: .9rem;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+.tabela-brasileirao img {
+  vertical-align: middle;
+  width: 25px;
+}
+
+.titulo-clube {
+  width: 40%;
+  text-align: left;
+}
+
+.pontos-clube {
+  font-weight: bold !important;
+  font-size: 1.2rem !important;
+}
+
+.titulo-ultimas-cinco {
+  width: 10px;
+}
+
+.borda-azul {
+  font-size: 1rem !important;
+  color: rgb(0, 0, 255) !important;
+  /* border-left: 3px solid #4285f4; */
+}
+
+.borda-laranja {
+  font-size: 1rem !important;
+  color: rgb(0, 255, 255) !important;
+  /* border-left: 3px solid #fa7b17; */
+}
+
+.borda-verde {
+  font-size: 1rem !important;
+  color: rgb(0, 128, 0) !important;
+  /* border-left: 3px solid #34a853; */
+}
+
+.borda-vermelho {
+  font-size: 1rem !important;
+  color: rgb(255, 0, 0) !important;
+  /* border-left: 3px solid #ea4335; */
+}
+
+.tabela-brasileirao tr:hover {
+  background-color: #f8f9fa;
+}
+
+.cartao-vermelho {
+  height: 18px;
+  width: 12px;
+  background-color: var(--cartao-vermelho);
+}
+
+.cartao-amarelo {
+  height: 18px;
+  width: 12px;
+  background-color: var(--cartao-amarelo);
+}

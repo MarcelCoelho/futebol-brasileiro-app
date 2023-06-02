@@ -1,0 +1,31 @@
+.jogador {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.bola {
+  justify-content: center;
+  align-items: center;
+  height: 1.8rem;
+  width: 1.8rem;
+  border-radius: 100%;
+}
+
+.bola p {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 0.15rem;
+}
+
+.nome {
+  display: flex;
+
+  text-align: justify;
+}
+
+.nome small {
+  text-align: justify;
+  font-size: 0.8rem;
+}

@@ -1,0 +1,18 @@
+<div id="container">
+  <p-dropdown [options]="data" [(ngModel)]="selectedData" optionLabel="descricao" filterBy="descricao"
+    [showClear]="true" scrollHeight="19rem" placeholder="Selecione um clube" (onChange)="clubeSelecionado()">
+
+    <ng-template pTemplate="selectedItem">
+      <div id="item-selecionado">
+        <img src="assets/clubes/{{selectedData.imagem}}.png" style="width: 24px" />
+        <div>{{ selectedData.descricao }}</div>
+      </div>
+    </ng-template>
+    <ng-template let-clube pTemplate="item">
+      <div id="lista-extendida">
+        <img src="assets/clubes/{{clube.imagem}}.png" style="width: 24px" />
+        <div>{{ clube.descricao }}</div>
+      </div>
+    </ng-template>
+  </p-dropdown>
+</div>

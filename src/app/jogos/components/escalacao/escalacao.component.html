@@ -1,0 +1,288 @@
+<div *ngIf="escalacaoMandante.length > 0">
+  <div id="container">
+
+    <div id="escalacao">
+
+      <div id="logo-clube">
+        <img src="assets/clubes/{{jogo.clubeMandante.logo}}.png" height="56" width="56"
+          alt="{{jogo.clubeMandante.nome}}">
+        <span>{{jogo.clubeMandante.nome}}</span>
+        <h3>{{jogo.golsClubeMandante}}</h3>
+      </div>
+
+      <div id="mandante">
+
+        <ng-template ngFor let-escalacao let-i="index" [ngForOf]="escalacaoMandante">
+
+          <div id="jogador">
+
+            <div [style]="{'width':'8rem'}" id="titular">
+              <small id="numero">{{escalacao.jogadorElenco.numero}}</small>
+              <span>{{escalacao.jogadorElenco.jogador.apelido | titlecase}}</span>
+              <span *ngIf="escalacao.cartoesAmarelos > 0" id="cartao-amarelo"></span>
+              <span *ngIf="escalacao.cartoesVermelhos > 0" id="cartao-vermelho"></span>
+              <span id="gols" *ngIf="escalacao.gols > 0">
+                <i *ngFor="let gol of createRange(escalacao.gols)">
+                  <img src="assets/gol-pro.png" />
+                </i>
+              </span>
+              <span *ngIf="escalacao.golsContra > 0" id="gols"><img src="assets/gol-contra.png" /></span>
+            </div>
+
+            <ng-template ngFor let-substituicao [ngForOf]="substituicoesMandante">
+
+              <span *ngIf="jogadorSubstituido(escalacao, substituicao)">
+                <div [style]="{'width':'8rem'}" id="reserva">
+                  <img src="assets/substituicao.png" height="16px" width="16px">
+
+                  <span>{{substituicao.jogadorEntrou.jogadorElenco.numero}}</span>
+                  <span>{{substituicao.jogadorEntrou.jogadorElenco.jogador.apelido | titlecase}}</span>
+                  <span *ngIf="substituicao.jogadorEntrou.cartoesAmarelos > 0" id="cartao-amarelo"></span>
+                  <span *ngIf="substituicao.jogadorEntrou.cartoesVermelhos > 0" id="cartao-vermelho"></span>
+                  <span id="gols" *ngIf="substituicao.jogadorEntrou.gols > 0">
+                    <i *ngFor="let gol of createRange(substituicao.jogadorEntrou.gols)">
+                      <img src="assets/gol-pro.png" />
+                    </i>
+                  </span>
+                  <span *ngIf="substituicao.jogadorEntrou.golsContra > 0" id="gols">
+                    <i *ngFor="let gol of createRange(substituicao.jogadorEntrou.golsContra)">
+                      <img src="assets/gol-contra.png" />
+                    </i>
+                  </span>
+                </div>
+              </span>
+
+            </ng-template>
+
+          </div>
+
+        </ng-template>
+
+        <div id="treinador">
+
+          <small>Técnico:</small>
+          <span>
+            {{ jogo.detalhesJogo?.mandante?.treinador?.apelido }}
+          </span>
+
+        </div>
+
+        <div id="treinador">
+
+          <small>Esquema:</small>
+          <span>{{ jogo.detalhesJogo?.mandante?.esquemaTatico
+            }}</span>
+        </div>
+        <!-- <div class="gramado">
+          <div class="laterais linha">
+
+            <div class="area bottom linha"></div>
+            <div class="circulo-central linha"></div>
+            <div class="linha-central linha"></div>
+            <div class="area top linha"></div>
+
+            <div class="jogador goleiro">
+              <app-jogador [ano]="jogo.data.getFullYear()" [rodada]="jogo.numeroRodada"
+                [nome]="escalacaoMandante[0].jogador.apelido" [numero]="1"
+                corFundo="jogo.clubeMandante.CorPrimeiroUniforme"></app-jogador>
+            </div>
+
+            <div class="jogador lateral-direito">
+              <app-jogador [nome]="escalacaoMandante[1].jogador.apelido" [numero]="2" cor="#159763"></app-jogador>
+            </div>
+
+            <div class="jogador zagueiro-direita">
+              <app-jogador [nome]="escalacaoMandante[2].jogador.apelido" [numero]="3" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador zagueiro-esquerda">
+              <app-jogador [nome]="escalacaoMandante[3].jogador.apelido" [numero]="4" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador lateral-esquerdo">
+              <app-jogador [nome]="escalacaoMandante[4].jogador.apelido" [numero]="6" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador meio-primeiro">
+              <app-jogador [nome]="escalacaoMandante[5].jogador.apelido" [numero]="5" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador meio-segundo">
+              <app-jogador [nome]="escalacaoMandante[6].jogador.apelido" [numero]="8" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador meio-terceiro">
+              <app-jogador [nome]="escalacaoMandante[7].jogador.apelido" [numero]="10" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador atacante-esquerda">
+              <app-jogador [nome]="escalacaoMandante[8].jogador.apelido" [numero]="11" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador atacante-direita">
+              <app-jogador [nome]="escalacaoMandante[9].jogador.apelido" [numero]="7" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador  centro-avante">
+              <app-jogador [nome]="escalacaoMandante[10].jogador.apelido" [numero]="9" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+          </div>
+        </div> -->
+
+      </div>
+
+      <div id="visitante">
+
+        <ng-template ngFor let-escalacao let-i="index" [ngForOf]="escalacaoVisitante">
+
+          <div id="jogador">
+
+            <div [style]="{'width':'8rem'}" id="titular">
+              <small id="numero">{{escalacao.jogadorElenco.numero}}</small>
+              <span>{{escalacao.jogadorElenco.jogador.apelido | titlecase}}</span>
+              <span *ngIf="escalacao.cartoesAmarelos > 0" id="cartao-amarelo"></span>
+              <span *ngIf="escalacao.cartoesVermelhos > 0" id="cartao-vermelho"></span>
+              <span id="gols" *ngIf="escalacao.gols > 0" ngFor="let gol of escalacao.gols">
+                <i *ngFor="let gol of createRange(escalacao.gols)">
+                  <img src="assets/gol-pro.png" />
+                </i>
+              </span>
+              <span id="gols" *ngIf="escalacao.golsContra > 0">
+                <i *ngFor="let gol of createRange(escalacao.golsContra)">
+                  <img src="assets/gol-contra.png" />
+                </i>
+              </span>
+            </div>
+
+            <ng-template ngFor let-substituicao [ngForOf]="substituicoesVisitante">
+
+              <span *ngIf="jogadorSubstituido(escalacao, substituicao)">
+                <div [style]="{'width':'8rem'}" id="reserva">
+                  <img src="assets/substituicao.png" height="16px" width="16px">
+
+                  <span>{{substituicao.jogadorEntrou.jogadorElenco.numero}}</span>
+                  <span>{{substituicao.jogadorEntrou.jogadorElenco.jogador.apelido | titlecase}}</span>
+                  <span *ngIf="substituicao.jogadorEntrou.cartoesAmarelos > 0" id="cartao-amarelo"></span>
+                  <span *ngIf="substituicao.jogadorEntrou.cartoesVermelhos > 0" id="cartao-vermelho"></span>
+                  <span *ngIf="substituicao.jogadorEntrou.gols > 0" id="gols">
+                    <i *ngFor="let gol of createRange(substituicao.jogadorEntrou.gols)">
+                      <img src="assets/gol-pro.png" />
+                    </i>
+                  </span>
+                  <span id="gols" *ngIf="substituicao.jogadorEntrou.golsContra > 0">
+                    <i *ngFor="let gol of createRange(substituicao.jogadorEntrou.golsContra)">
+                      <img src="assets/gol-contra.png" />
+                    </i>
+                  </span>
+                </div>
+              </span>
+
+            </ng-template>
+
+          </div>
+
+        </ng-template>
+
+        <div id="treinador">
+
+          <small>Técnico:</small>
+          <span>
+            {{ jogo.detalhesJogo?.visitante?.treinador?.apelido }}
+          </span>
+
+        </div>
+
+        <div id="treinador">
+
+          <small>Esquema:</small>
+          <span>{{ jogo.detalhesJogo?.visitante?.esquemaTatico
+            }}</span>
+        </div>
+        <!-- <div class="gramado">
+          <div class="laterais linha">
+
+            <div class="area bottom linha"></div>
+            <div class="circulo-central linha"></div>
+            <div class="linha-central linha"></div>
+            <div class="area top linha"></div>
+
+            <div class="jogador goleiro">
+              <app-jogador [nome]="escalacaoVisitante[0].jogador.apelido" [numero]="1" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador lateral-direito">
+              <app-jogador [nome]="escalacaoVisitante[1].jogador.apelido" [numero]="2" cor="#159763"></app-jogador>
+            </div>
+
+            <div class="jogador zagueiro-direita">
+              <app-jogador [nome]="escalacaoVisitante[2].jogador.apelido" [numero]="3" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador zagueiro-esquerda">
+              <app-jogador [nome]="escalacaoVisitante[3].jogador.apelido" [numero]="4" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador lateral-esquerdo">
+              <app-jogador [nome]="escalacaoVisitante[4].jogador.apelido" [numero]="6" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador meio-primeiro">
+              <app-jogador [nome]="escalacaoVisitante[5].jogador.apelido" [numero]="5" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador meio-segundo">
+              <app-jogador [nome]="escalacaoVisitante[6].jogador.apelido" [numero]="8" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador meio-terceiro">
+              <app-jogador [nome]="escalacaoVisitante[7].jogador.apelido" [numero]="10" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador atacante-esquerda">
+              <app-jogador [nome]="escalacaoVisitante[8].jogador.apelido" [numero]="11" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador atacante-direita">
+              <app-jogador [nome]="escalacaoVisitante[9].jogador.apelido" [numero]="7" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+            <div class="jogador  centro-avante">
+              <app-jogador [nome]="escalacaoVisitante[10].jogador.apelido" [numero]="9" cor="#159763"
+                borda="#fff"></app-jogador>
+            </div>
+
+          </div>
+        </div> -->
+
+      </div>
+
+      <div id="logo-clube">
+        <img src="assets/clubes/{{jogo.clubeVisitante.logo}}.png" height="56" width="56"
+          alt="{{jogo.clubeVisitante.nome}}">
+        <span>{{jogo.clubeVisitante.nome}}</span>
+        <h3>{{jogo.golsClubeVisitante}}</h3>
+      </div>
+
+    </div>
+
+  </div>
+</div>

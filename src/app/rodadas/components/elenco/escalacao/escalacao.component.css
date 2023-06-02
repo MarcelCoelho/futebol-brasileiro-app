@@ -1,0 +1,40 @@
+.jogadorEscalado {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  width: 18.5rem;
+  border: none;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  cursor: move;
+}
+
+.jogadorEscalado:hover {
+  background-color: rgb(144, 144, 230);
+  border-radius: 0.5rem;
+}
+
+.substituido {
+  background-color: rgb(240, 240, 240);
+}
+
+.infoJogador {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+i {
+  cursor: pointer;
+}
+
+i:hover {
+  color: aliceblue;
+}

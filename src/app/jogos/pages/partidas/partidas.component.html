@@ -1,0 +1,19 @@
+<div id="container">
+
+  <div id="header-filtro">
+    <!-- <app-dropdown-image [data]="data" (onSelectedData)="clubeSelecionado($event)"></app-dropdown-image> -->
+    <app-multi-dropdown-image [data]="data" (onSelectedData)="clubeSelecionado($event)"></app-multi-dropdown-image>
+  </div>
+
+  <div id="content">
+    <app-calendario-jogos-clube [rodadas]="rodadas" [clubes]="clubes"></app-calendario-jogos-clube>
+    <!-- <div *ngIf="porClube">
+      <app-calendario-jogos-clube [rodadas]="rodadas" [clubes]="clubes"></app-calendario-jogos-clube>
+    </div>
+    <div *ngIf="!porClube">
+      <app-calendario-jogos></app-calendario-jogos>
+    </div> -->
+  </div>
+
+
+</div>

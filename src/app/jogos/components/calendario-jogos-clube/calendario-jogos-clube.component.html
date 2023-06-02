@@ -1,0 +1,94 @@
+<div id="container">
+
+  <div id="content">
+
+    <div *ngFor="let jogoclube of jogosClubes">
+      <p-accordion>
+        <p-accordionTab multiple="true" [transitionOptions]="'500ms'" [selected]="selectedAccordion">
+          <ng-template pTemplate="header">
+            <div id="header-clube">
+              <img src="assets/clubes/{{jogoclube.clube.logo}}.png" height="24" width="24"
+                alt="{{jogoclube.clube.nome}}">
+
+              <span id="posicao"><small>Posição:</small> {{jogoclube.classificacao.posicao}}º</span>
+              <span><small>Jogos:</small> {{jogoclube.classificacao.jogos}}</span>
+              <span><small>Pontos:</small> {{jogoclube.classificacao.pontos}}</span>
+              <span><small>Vitorias:</small> {{jogoclube.classificacao.vitorias}}</span>
+              <span><small>Empates:</small> {{jogoclube.classificacao.empates}}</span>
+              <span><small>Derrotas:</small> {{jogoclube.classificacao.derrotas}}</span>
+              <span><small>Gols P:</small> {{jogoclube.classificacao.golsPro}}</span>
+              <span><small>Gols C:</small> {{jogoclube.classificacao.golsContra}}</span>
+              <span><small>Saldo:</small> {{jogoclube.classificacao.saldoGols}}</span>
+              <!-- <small id="cartao-amarelo"></small> <span
+                [style]="{'width':'1rem'}">{{jogoclube.classificacao.cartoesAmarelos}}</span> -->
+              <span [style]="{'width': '2rem'}">
+                <div id="cartao-amarelo"></div> <span>{{jogoclube.classificacao.cartoesAmarelos}}</span>
+              </span>
+              <span>
+                <div id="cartao-vermelho"></div>
+                <span> {{jogoclube.classificacao.cartoesVermelhos}}</span>
+              </span>
+              <span>{{jogoclube.classificacao.aproveitamento}}%</span>
+              <span id="proximo-jogo"><img src="assets/clubes/{{jogoclube.classificacao.proximoJogo?.logo}}.png"
+                  height="16px" width="16px" alt="{{jogoclube.classificacao.proximoJogo?.nome}}">
+                <h6>{{jogoclube.localProximoJogo}}</h6>
+              </span>
+              <!-- <th><img src="assets/red-card.jpg" alt="Cartoes vermelhos" /></th>
+              <th><img src="assets/yellow-card.png" alt="Cartoes amarelos" /></th> -->
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="content">
+
+            <p-accordion *ngFor="let jogo of jogoclube.jogos" (onOpen)="getSelected(jogo)">
+              <p-accordionTab multiple="true" [transitionOptions]="'500ms'" [selected]="false">
+
+                <ng-template pTemplate="header">
+
+                  <div id="content-header">
+
+                    <div id="confronto-clubes">
+                      <span>{{jogo.clubeMandante.apelido}}</span>
+                      <img src="assets/clubes/{{jogo.clubeMandante.logo}}.png" height="24" width="24"
+                        alt="{{jogo.clubeMandante.nome}}">
+                      <span
+                        *ngIf="jogo.finalizado || getJogoEmAndamentoLocal(jogo)"><b>{{jogo.golsClubeMandante}}</b></span>
+                      <span> X</span>
+                      <span
+                        *ngIf="jogo.finalizado || getJogoEmAndamentoLocal(jogo)"><b>{{jogo.golsClubeVisitante}}</b></span>
+                      <img src="assets/clubes/{{jogo.clubeVisitante.logo}}.png" height="24" width="24"
+                        alt="{{jogo.clubeVisitante.nome}}">
+                      <span>{{jogo.clubeVisitante.apelido}}</span>
+                    </div>
+
+                    <div id="data-local">
+                      <span> {{ getDiaSemanaLocal(jogo.data)}} {{ jogo.data | date: 'dd/MM/yyyy' }}
+                        {{jogo.hora}}</span>
+                      <span id="estadio">{{jogo.local?.apelido | uppercase }}</span>
+                    </div>
+
+                  </div>
+                </ng-template>
+
+                <ng-template pTemplate="content">
+
+                  <div id="loading"
+                    *ngIf="jogo.detalhesJogo === undefined || jogo.detalhesJogo === null; else jogoActivate">
+                    <img src="assets/clubes/{{jogoclube.clube.logo}}.png" height="48" width="48"
+                      alt="{{jogo.clubeVisitante.nome}}">
+                  </div>
+
+                  <ng-template #jogoActivate>
+                    <app-escalacao [jogo]="jogo"></app-escalacao>
+                  </ng-template>
+
+                </ng-template>
+
+              </p-accordionTab>
+            </p-accordion>
+          </ng-template>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </div>
+</div>
